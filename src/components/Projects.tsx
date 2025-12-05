@@ -3,6 +3,7 @@ import { useInView } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { ExternalLink, Github, X } from 'lucide-react';
 import { TRAVEL_EVA_FIGMA_URL } from './Hero';
+import { FigmaIcon } from './TechIcons';
 
 const projects = [
 	{
@@ -11,7 +12,7 @@ const projects = [
 			'A comprehensive web application for managing employee records, attendance tracking, and salary management with CRUD operations, responsive UI, and form validation.',
 		tech: ['HTML', 'CSS', 'JavaScript'],
 		role: 'Full Stack Developer',
-		github: '#', // Replace with actual GitHub link
+		github: 'https://github.com/yaswanth-ks/FullStack',
 		image: null,
 	},
 	{
@@ -20,7 +21,7 @@ const projects = [
 			'A two-module platform (Admin & User) featuring employee management, attendance tracking, salary automation, product browsing, secure payment processing, and complaint handling.',
 		tech: ['HTML', 'CSS', 'JavaScript', 'Backend'],
 		role: 'Full Stack Developer',
-		github: '#', // Replace with actual GitHub link
+		github: 'https://github.com/Rakchanaa/Street-Light-Management-System',
 		image: null,
 	},
 	{
@@ -38,7 +39,7 @@ const projects = [
 			'A personal portfolio website showcasing my projects, skills, and experience. Built with modern technologies and featuring smooth animations and responsive design.',
 		tech: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
 		role: 'Full Stack Developer',
-		github: '#', // Replace with actual GitHub link
+		github: 'https://github.com/Rakchanaa/portfolio-website',
 		image: null,
 	},
 ];
@@ -72,17 +73,32 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 						animate={{ opacity: isHovered ? 1 : 0 }}
 						className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center gap-4"
 					>
-						<motion.a
-							href={project.github}
-							target="_blank"
-							rel="noopener noreferrer"
-							whileHover={{ scale: 1.1 }}
-							whileTap={{ scale: 0.95 }}
-							className="w-12 h-12 rounded-full gradient-bg flex items-center justify-center text-primary-foreground"
-							aria-label="View code on GitHub"
-						>
-							<Github className="w-5 h-5" />
-						</motion.a>
+						{project.title === 'Travel Eva (UI/UX)' ? (
+							// show only Figma for Travel Eva
+							<motion.a
+								href={TRAVEL_EVA_FIGMA_URL}
+								target="_blank"
+								rel="noopener noreferrer"
+								whileHover={{ scale: 1.1 }}
+								whileTap={{ scale: 0.95 }}
+								className="w-12 h-12 rounded-full gradient-bg flex items-center justify-center text-primary-foreground"
+								aria-label="View on Figma"
+							>
+								<FigmaIcon className="w-5 h-5" />
+							</motion.a>
+						) : (
+							<motion.a
+								href={project.github}
+								target="_blank"
+								rel="noopener noreferrer"
+								whileHover={{ scale: 1.1 }}
+								whileTap={{ scale: 0.95 }}
+								className="w-12 h-12 rounded-full gradient-bg flex items-center justify-center text-primary-foreground"
+								aria-label="View code on GitHub"
+							>
+								<Github className="w-5 h-5" />
+							</motion.a>
+						)}
 						<motion.button
 							onClick={() => setShowModal(true)}
 							whileHover={{ scale: 1.1 }}
@@ -165,7 +181,7 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 								rel="noopener noreferrer"
 								className="btn-primary inline-flex items-center gap-2"
 							>
-								<Github className="w-4 h-4" />
+								<FigmaIcon className="w-4 h-4" />
 								View on Figma
 							</a>
 						) : (

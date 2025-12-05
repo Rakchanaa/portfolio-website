@@ -11,6 +11,18 @@ export const openTravelEVA = () => {
   window.open(TRAVEL_EVA_FIGMA_URL, '_blank', 'noopener,noreferrer');
 };
 
+// Export openMail so ContactForm can import and use it
+export const openMail = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  e.preventDefault();
+  const to = 'rakchanaar9@gmail.com';
+  // attempt Outlook protocol (works when Outlook is installed and protocol registered)
+  window.open(`ms-outlook://compose?to=${to}`);
+  // fallback to default mail client
+  setTimeout(() => {
+    window.location.href = `mailto:${to}`;
+  }, 600);
+};
+
 const roles = ['Full Stack Developer', 'UI/UX Designer', 'Vibe Coder'];
 
 const Hero = () => {
@@ -55,18 +67,6 @@ const Hero = () => {
     window.open(DRIVE_RESUME_URL, '_blank', 'noopener,noreferrer');
   };
   
-  // Try to open desktop Outlook; fallback to mailto
-  const openMail = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const to = 'rakchanaar9@gmail.com';
-    // attempt Outlook protocol (works when Outlook is installed and protocol registered)
-    window.open(`ms-outlook://compose?to=${to}`);
-    // fallback to default mail client
-    setTimeout(() => {
-      window.location.href = `mailto:${to}`;
-    }, 600);
-  };
-
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />

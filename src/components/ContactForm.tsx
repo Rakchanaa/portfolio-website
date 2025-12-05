@@ -4,6 +4,7 @@ import { useInView } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { Send, MapPin, Phone, Mail, CheckCircle, AlertCircle } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon, GmailIcon } from './TechIcons';
+import { openMail } from './Hero'; // import Outlook handler
 
 // =====================================
 // EmailJS Configuration
@@ -23,10 +24,15 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: <LinkedInIcon className="w-5 h-5" />, label: 'LinkedIn', href: '#' }, // Replace with actual LinkedIn URL
-  { icon: <GitHubIcon className="w-5 h-5" />, label: 'GitHub', href: '#' }, // Replace with actual GitHub URL
+  { icon: <LinkedInIcon className="w-5 h-5" />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/rakchanaa-ravikumar-5485a2259/' },
+  { icon: <GitHubIcon className="w-5 h-5" />, label: 'GitHub', href: 'https://github.com/Rakchanaa' },
   { icon: <GmailIcon className="w-5 h-5" />, label: 'Gmail', href: 'mailto:rakchanaar9@gmail.com' },
 ];
+
+// Handler wrapper for mail with Outlook support
+const handleSocialMailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  openMail(e as React.MouseEvent<HTMLAnchorElement>);
+};
 
 const ContactForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -75,11 +81,15 @@ const ContactForm = () => {
 
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
+      setErrors({});
       
       setTimeout(() => setStatus('idle'), 5000);
     } catch (error) {
       console.error('EmailJS Error:', error);
+      // per request: show "Successfully Sent" even when failing and clear inputs
       setStatus('error');
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setErrors({});
       setTimeout(() => setStatus('idle'), 5000);
     }
   };
@@ -147,6 +157,7 @@ const ContactForm = () => {
                     <motion.a
                       key={social.label}
                       href={social.href}
+                      onClick={social.label === 'Gmail' ? handleSocialMailClick : undefined}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1, y: -2 }}
@@ -242,8 +253,8 @@ const ContactForm = () => {
                   </>
                 ) : status === 'error' ? (
                   <>
-                    <AlertCircle className="w-5 h-5" />
-                    Failed to Send
+                    <CheckCircle className="w-5 h-5" />
+                    Successfully Sent
                   </>
                 ) : (
                   <>

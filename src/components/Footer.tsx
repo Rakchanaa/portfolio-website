@@ -11,7 +11,7 @@ const Footer = () => {
           className="text-center"
         >
           <p className="text-muted-foreground text-sm glow-text">
-            © 2025 Rakchanaa R. Designed and Developed by Rakchanaa R.
+            © Designed and Developed with ❤️ by Rakchanaa R.
           </p>
         </motion.div>
       </div>
