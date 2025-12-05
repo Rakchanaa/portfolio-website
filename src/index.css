@@ -1,0 +1,232 @@
+/* Move imports before any @tailwind or @layer rules */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 270 100% 82%;
+    --primary-foreground: 0 0% 0%;
+
+    --secondary: 263 100% 71%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 258 100% 65%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 70%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 270 100% 82%;
+
+    --radius: 0.75rem;
+
+    /* Custom portfolio colors */
+    --lavender-primary: 270 100% 82%;
+    --lavender-secondary: 263 100% 71%;
+    --lavender-accent: 258 100% 65%;
+    --glow-color: 270 100% 82%;
+
+    /* Gradients */
+    --gradient-lavender: linear-gradient(135deg, hsl(270 100% 82%) 0%, hsl(263 100% 71%) 100%);
+    --gradient-lavender-intense: linear-gradient(135deg, hsl(263 100% 71%) 0%, hsl(258 100% 65%) 100%);
+
+    /* Shadows */
+    --shadow-glow: 0 0 30px hsl(270 100% 82% / 0.3);
+    --shadow-glow-intense: 0 0 50px hsl(270 100% 82% / 0.5);
+    --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-lavender);
+  }
+
+  .gradient-bg {
+    background-image: var(--gradient-lavender);
+  }
+
+  .gradient-bg-intense {
+    background-image: var(--gradient-lavender-intense);
+  }
+
+  .glow-box {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .glow-box-intense {
+    box-shadow: var(--shadow-glow-intense);
+  }
+
+  .card-glass {
+    @apply bg-card/80 backdrop-blur-md border border-border rounded-2xl;
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .heading-xl {
+    @apply text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight;
+  }
+
+  .heading-lg {
+    @apply text-3xl sm:text-4xl font-bold tracking-tight;
+  }
+
+  .heading-md {
+    @apply text-xl sm:text-2xl font-semibold;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-semibold text-primary-foreground gradient-bg 
+           hover:opacity-90 transition-all duration-300 glow-box hover:glow-box-intense;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 rounded-xl font-semibold border-2 border-primary text-primary
+           hover:bg-primary hover:text-primary-foreground transition-all duration-300;
+  }
+
+  .skill-badge {
+    @apply px-4 py-2 rounded-full bg-muted text-foreground font-medium text-sm
+           border border-border transition-all duration-300
+           hover:border-primary hover:glow-box hover:scale-105;
+  }
+
+  .nav-link {
+    @apply text-muted-foreground hover:text-primary transition-colors duration-300 font-medium;
+  }
+
+  .nav-link-active {
+    @apply text-primary;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(5deg);
+    }
+  }
+
+  @keyframes float-reverse {
+    0%, 100% {
+      transform: translateY(-10px);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(270 100% 82% / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(270 100% 82% / 0.6);
+    }
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink {
+    50% { border-color: transparent }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-float-reverse {
+    animation: float-reverse 5s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  /* Progress ring animation */
+  @keyframes progress-ring {
+    0% {
+      stroke-dashoffset: 283;
+    }
+  }
+
+  .progress-ring {
+    animation: progress-ring 1.5s ease-out forwards;
+  }
+
+  /* Timeline styles */
+  .timeline-line {
+    @apply absolute left-1/2 transform -translate-x-1/2 w-1 h-full gradient-bg rounded-full;
+  }
+
+  .timeline-marker {
+    @apply w-5 h-5 rounded-full gradient-bg border-4 border-background glow-box
+           absolute left-1/2 transform -translate-x-1/2 z-10;
+  }
+}
+
+/* Tailwind directives must come after imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
