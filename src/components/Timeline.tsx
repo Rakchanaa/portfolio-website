@@ -7,8 +7,8 @@ const educationData = [
   {
     degree: 'B.E. Computer Science and Design',
     institution: 'Kongu Engineering College, Erode',
-    period: '2022 – Present',
-    grade: 'CGPA: 7.33 (till 6th semester)',
+    period: '2022 – 2026',
+    grade: 'CGPA: 7.40',
   },
   {
     degree: 'Higher Secondary Certificate (HSC)',

@@ -61,7 +61,7 @@ const Hero = () => {
   };
 
   // resume (Google Drive) — opens in a new tab
-  const DRIVE_RESUME_URL = 'https://drive.google.com/file/d/1QvxDB30CBlWLLns7qFk441xVdmUIgQQO/view?usp=drive_link';
+  const DRIVE_RESUME_URL = 'https://drive.google.com/file/d/13U46nxnWXVCqrQYAf60fWO-Uu5e1xqbe/view?usp=sharing';
   const openResume = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     window.open(DRIVE_RESUME_URL, '_blank', 'noopener,noreferrer');

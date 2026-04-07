@@ -2,10 +2,31 @@ import { motion } from 'framer-motion';
 import { useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-const technicalSkills = ['Java', 'SQL', 'HTML', 'CSS', 'JavaScript', 'React'];
-const tools = ['VS Code', 'Google Colab', 'GitHub', 'Figma', 'Canva'];
-const softSkills = ['Leadership', 'Teamwork', 'Time Management', 'Punctuality'];
-const learningSkills = ['React', 'Node.js', 'MongoDB'];
+const technicalSkills = ['C', 'Java', 'SQL', 'HTML', 'CSS', 'JavaScript', 'React', 'Node.js', 'Express.js', 'MongoDB'];
+const tools = ['VS Code', 'Postman', 'Google Colab', 'GitHub', 'Figma', 'Canva', 'Lovable', 'Supabase'];
+const softSkills = ['Leadership', 'Teamwork', 'Time Management'];
+
+const SkillCard = ({ title, items, columns }: { title: string; items: string[]; columns: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: '-100px' }}
+    transition={{ duration: 0.6 }}
+    className="skill-panel"
+  >
+    <div className="skill-panel-icon">
+      <div className="skill-panel-icon-inner" />
+    </div>
+    <h3 className="heading-md text-foreground">{title}</h3>
+    <div className={`grid w-full gap-4 ${columns === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
+      {items.map((skill) => (
+        <div key={skill} className="skill-pill">
+          {skill}
+        </div>
+      ))}
+    </div>
+  </motion.div>
+);
 
 const Skills = () => {
   const ref = useRef(null);
@@ -16,46 +37,14 @@ const Skills = () => {
       <div className="section-container" ref={ref}>
         <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6 }} className="text-center mb-16">
           <span className="text-primary font-semibold uppercase tracking-wider text-sm">What I know</span>
-          <h2 className="heading-lg mt-4 gradient-text">Skills & Tools</h2>
+          <h2 className="heading-lg mt-4 gradient-text">Skills & Technologies</h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.2 }} className="card-glass p-8">
-            <h3 className="heading-md text-foreground mb-6 text-center">Technical Skills</h3>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {technicalSkills.map((skill, index) => (
-                <motion.span key={skill} initial={{ opacity: 0, scale: 0.8 }} animate={isInView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.3, delay: 0.3 + index * 0.05 }} whileHover={{ scale: 1.1 }} className="skill-badge">{skill}</motion.span>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.3 }} className="card-glass p-8">
-            <h3 className="heading-md text-foreground mb-6 text-center">Tools</h3>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {tools.map((tool, index) => (
-                <motion.span key={tool} initial={{ opacity: 0, scale: 0.8 }} animate={isInView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.3, delay: 0.4 + index * 0.05 }} whileHover={{ scale: 1.1 }} className="skill-badge">{tool}</motion.span>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.4 }} className="card-glass p-8">
-            <h3 className="heading-md text-foreground mb-6 text-center">Soft Skills</h3>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {softSkills.map((skill, index) => (
-                <motion.span key={skill} initial={{ opacity: 0, scale: 0.8 }} animate={isInView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.3, delay: 0.5 + index * 0.05 }} whileHover={{ scale: 1.1 }} className="skill-badge">{skill}</motion.span>
-              ))}
-            </div>
-          </motion.div>
+        <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr_0.85fr]">
+          <SkillCard title="Technical Skills" items={technicalSkills} columns={1} />
+          <SkillCard title="Tools" items={tools} columns={2} />
+          <SkillCard title="Soft Skills" items={softSkills} columns={1} />
         </div>
-
-        <motion.div initial={{ opacity: 0, y: 50 }} animate={isInView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.6, delay: 0.5 }} className="mt-12 card-glass p-8">
-          <h3 className="heading-md text-foreground mb-8 text-center">Currently Learning</h3>
-          <div className="flex flex-wrap justify-center gap-6">
-            {learningSkills.map((skill, index) => (
-              <motion.div key={skill} initial={{ opacity: 0, scale: 0.8 }} animate={isInView ? { opacity: 1, scale: 1 } : {}} transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }} whileHover={{ scale: 1.1, y: -5 }} className="px-6 py-3 rounded-xl bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 text-foreground font-semibold text-lg hover:glow-box transition-all duration-300">{skill}</motion.div>
-            ))}
-          </div>
-        </motion.div>
       </div>
     </section>
   );

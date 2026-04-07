@@ -48,6 +48,38 @@
     --shadow-glow-intense: 0 0 50px hsl(270 100% 82% / 0.5);
     --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.5);
   }
+
+  .light {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+
+    --primary: 270 100% 82%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 263 100% 71%;
+    --secondary-foreground: 0 0% 0%;
+
+    --accent: 258 100% 65%;
+    --accent-foreground: 0 0% 0%;
+
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 270 100% 82%;
+
+    --shadow-card: 0 10px 40px hsl(0 0% 0% / 0.1);
+  }
 }
 
 @layer base {
@@ -126,6 +158,31 @@
     @apply px-4 py-2 rounded-full bg-muted text-foreground font-medium text-sm
            border border-border transition-all duration-300
            hover:border-primary hover:glow-box hover:scale-105;
+  }
+
+  .skill-panel {
+    @apply card-glass p-8 flex flex-col items-center gap-8 text-center;
+    min-height: 26rem;
+  }
+
+  .skill-panel-icon {
+    @apply flex items-center justify-center w-16 h-16 rounded-[1.75rem] bg-primary/10 border border-primary/20;
+  }
+
+  .skill-panel-icon-inner {
+    @apply w-3.5 h-3.5 rounded-2xl bg-primary;
+  }
+
+  .skill-pill {
+    @apply w-full rounded-3xl border border-border bg-muted/80 text-foreground text-sm font-medium px-5 py-3 text-center transition-all duration-300 hover:border-primary hover:bg-muted;
+  }
+
+  .skill-panel h3 {
+    @apply text-2xl font-semibold;
+  }
+
+  .skill-panel > div:nth-child(3) {
+    @apply grid w-full gap-4;
   }
 
   .nav-link {

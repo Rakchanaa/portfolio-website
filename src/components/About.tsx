@@ -42,13 +42,13 @@ const About = () => {
             </div>
             
             <p className="text-muted-foreground leading-relaxed mb-6">
-              I am an enthusiastic Computer Science and Design student with a strong interest in 
+              I am a Computer Science and Design graduate with a strong interest in 
               web development, UI/UX design, and full-stack development. I thrive in collaborative 
               environments and am committed to continuous learning and improvement.
             </p>
             
             <p className="text-muted-foreground leading-relaxed">
-              Currently pursuing my B.E. at Kongu Engineering College, I focus on building 
+              I graduated with a B.E. from Kongu Engineering College, focusing on building 
               meaningful projects that solve real-world problems while maintaining clean, 
               efficient code and beautiful user interfaces.
             </p>

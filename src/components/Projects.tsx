@@ -7,22 +7,34 @@ import { FigmaIcon } from './TechIcons';
 
 const projects = [
 	{
-		title: 'Employee Management System',
+		title: 'Expense Tracker',
 		description:
-			'A comprehensive web application for managing employee records, attendance tracking, and salary management with CRUD operations, responsive UI, and form validation.',
-		tech: ['HTML', 'CSS', 'JavaScript'],
+			'A comprehensive expense tracking application that helps users manage their finances by recording income and expenses, categorizing transactions, and providing insightful reports and analytics.',
+		tech: ['React', 'Node.js', 'MongoDB', 'Express'],
 		role: 'Full Stack Developer',
-		github: 'https://github.com/yaswanth-ks/FullStack',
-		image: null,
+		github: 'https://github.com/Rakchanaa/expense-tracker',
+		live: 'https://savvy-saver.netlify.app/',
+		image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400&h=300&fit=crop&crop=center',
 	},
 	{
-		title: 'Streetlight Management System',
+		title: 'Focus Flow',
 		description:
-			'A two-module platform (Admin & User) featuring employee management, attendance tracking, salary automation, product browsing, secure payment processing, and complaint handling.',
-		tech: ['HTML', 'CSS', 'JavaScript', 'Backend'],
+			'A productivity app designed to help users maintain focus and manage their time effectively with features like task management, Pomodoro timer, and progress tracking.',
+		tech: ['React', 'TypeScript', 'Tailwind CSS', 'Firebase'],
 		role: 'Full Stack Developer',
-		github: 'https://github.com/Rakchanaa/Street-Light-Management-System',
-		image: null,
+		github: 'https://github.com/Rakchanaa/focusflow',
+		live: 'http://focus-flowsss.netlify.app/#/auth',
+		image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop&crop=center',
+	},
+	{
+		title: 'Shiva Traders',
+		description:
+			'An e-commerce platform for Shiva Traders, featuring product catalog, shopping cart, secure payment processing, and order management system.',
+		tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
+		role: 'Full Stack Developer',
+		github: 'https://github.com/Rakchanaa/shiva_traders',
+		live: 'https://shiva-traders.vercel.app/',
+		image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop&crop=center',
 	},
 	{
 		title: 'Travel Eva (UI/UX)',
@@ -31,7 +43,7 @@ const projects = [
 		tech: ['Figma', 'UI/UX Design'],
 		role: 'UI/UX Designer',
 		github: '#', // Replace with Figma link
-		image: null,
+		image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=300&fit=crop&crop=center',
 	},
 	{
 		title: 'Portfolio',
@@ -40,7 +52,7 @@ const projects = [
 		tech: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
 		role: 'Full Stack Developer',
 		github: 'https://github.com/Rakchanaa/portfolio-website',
-		image: null,
+		image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=400&h=300&fit=crop&crop=center',
 	},
 ];
 
@@ -61,11 +73,20 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 			>
 				{/* Project Image or Placeholder */}
 				<div className="h-48 bg-gradient-to-br from-primary/10 to-secondary/10 relative overflow-hidden">
-					<div className="absolute inset-0 flex items-center justify-center">
-						<span className="text-4xl font-bold gradient-text opacity-30">
-							{project.title.charAt(0)}
-						</span>
-					</div>
+					{project.image ? (
+						<img
+							src={project.image}
+							alt={project.title}
+							className="w-full h-full object-cover"
+							loading="lazy"
+						/>
+					) : (
+						<div className="absolute inset-0 flex items-center justify-center">
+							<span className="text-4xl font-bold gradient-text opacity-30">
+								{project.title.charAt(0)}
+							</span>
+						</div>
+					)}
 
 					{/* Hover Overlay */}
 					<motion.div
@@ -87,17 +108,32 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 								<FigmaIcon className="w-5 h-5" />
 							</motion.a>
 						) : (
-							<motion.a
-								href={project.github}
-								target="_blank"
-								rel="noopener noreferrer"
-								whileHover={{ scale: 1.1 }}
-								whileTap={{ scale: 0.95 }}
-								className="w-12 h-12 rounded-full gradient-bg flex items-center justify-center text-primary-foreground"
-								aria-label="View code on GitHub"
-							>
-								<Github className="w-5 h-5" />
-							</motion.a>
+							<>
+								<motion.a
+									href={project.github}
+									target="_blank"
+									rel="noopener noreferrer"
+									whileHover={{ scale: 1.1 }}
+									whileTap={{ scale: 0.95 }}
+									className="w-12 h-12 rounded-full gradient-bg flex items-center justify-center text-primary-foreground"
+									aria-label="View code on GitHub"
+								>
+									<Github className="w-5 h-5" />
+								</motion.a>
+								{project.live && (
+									<motion.a
+										href={project.live}
+										target="_blank"
+										rel="noopener noreferrer"
+										whileHover={{ scale: 1.1 }}
+										whileTap={{ scale: 0.95 }}
+										className="w-12 h-12 rounded-full bg-muted flex items-center justify-center text-foreground"
+										aria-label="View live demo"
+									>
+										<ExternalLink className="w-5 h-5" />
+									</motion.a>
+								)}
+							</>
 						)}
 						<motion.button
 							onClick={() => setShowModal(true)}
@@ -185,15 +221,28 @@ const ProjectCard = ({ project, index }: { project: typeof projects[0]; index: n
 								View on Figma
 							</a>
 						) : (
-							<a
-								href={project.github}
-								target="_blank"
-								rel="noopener noreferrer"
-								className="btn-primary inline-flex items-center gap-2"
-							>
-								<Github className="w-4 h-4" />
-								View on GitHub
-							</a>
+							<div className="flex gap-4">
+								<a
+									href={project.github}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="btn-primary inline-flex items-center gap-2"
+								>
+									<Github className="w-4 h-4" />
+									View on GitHub
+								</a>
+								{project.live && (
+									<a
+										href={project.live}
+										target="_blank"
+										rel="noopener noreferrer"
+										className="btn-outline inline-flex items-center gap-2"
+									>
+										<ExternalLink className="w-4 h-4" />
+										Live Demo
+									</a>
+								)}
+							</div>
 						)}
 					</motion.div>
 				</motion.div>
